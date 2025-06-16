@@ -1,0 +1,135 @@
+from pptx import Presentation
+from pptx.util import Inches, Pt
+
+# Create a presentation object
+prs = Presentation()
+
+# Slide 1: Title slide
+slide_layout = prs.slide_layouts[0]  # Title slide layout
+slide = prs.slides.add_slide(slide_layout)
+title = slide.shapes.title
+subtitle = slide.placeholders[1]
+
+title.text = "AgentPlaces Platform Sunumu"
+subtitle.text = "Node.js & React Tabanlı Modüler Agent Yönetim Platformu\nHazırlayan: Atakan Kaplayan"
+
+# Slide 2: İçindekiler
+slide_layout = prs.slide_layouts[1]  # Title and Content
+slide = prs.slides.add_slide(slide_layout)
+slide.shapes.title.text = "İçindekiler"
+
+content = slide.shapes.placeholders[1].text_frame
+items = [
+    "Mimari Genel Bakış",
+    "Modüler Yapı ve Mikro Parçacıklar",
+    "Teknoloji Stack'i",
+    "AgentPlaces Dashboard",
+    "Gelişmiş Özellikler ve Yol Haritası",
+    "Sprint 1 Planı"
+]
+for item in items:
+    p = content.add_paragraph()
+    p.text = item
+    p.level = 0
+
+# Slide 3: Mimari Genel Bakış
+slide = prs.slides.add_slide(slide_layout)
+slide.shapes.title.text = "Mimari Genel Bakış"
+tf = slide.shapes.placeholders[1].text_frame
+architecture_points = [
+    "Frontend: React (AgentManager UI)",
+    "Backend: Node.js (NestJS önerisi)",
+    "LLM Service: OpenAI veya yerel modeller",
+    "Cache: Redis",
+    "DB: MongoDB",
+    "Queue: RabbitMQ veya BullMQ"
+]
+for point in architecture_points:
+    p = tf.add_paragraph()
+    p.text = point
+    p.level = 0
+
+# Slide 4: Modüler Yapı ve Mikro Parçacıklar
+slide = prs.slides.add_slide(slide_layout)
+slide.shapes.title.text = "Modüler Yapı ve Mikro Parçacıklar"
+tf = slide.shapes.placeholders[1].text_frame
+modules = [
+    "**Agent Definition Module**: Agent konfigürasyonu ve yetenekleri",
+    "**Dosya Yorumlayıcılar**: PDF, Word, Mail thread parser",
+    "**Görev Yürütücüler**: analyzeMailLoop(), summarizeAttachedFile()",
+    "**PromptEngine**: Özel prompt template'leri ve LLM entegrasyonu"
+]
+for module in modules:
+    p = tf.add_paragraph()
+    p.text = module
+    p.level = 0
+
+# Slide 5: Teknoloji Stack'i
+slide = prs.slides.add_slide(slide_layout)
+slide.shapes.title.text = "Teknoloji Stack'i"
+tf = slide.shapes.placeholders[1].text_frame
+tech_stack = [
+    "Frontend: React, TypeScript",
+    "Backend: Node.js, NestJS",
+    "Veritabanı: MongoDB",
+    "Cache: Redis",
+    "Queue: BullMQ veya RabbitMQ",
+    "Diğer: Docker, REST API"
+]
+for tech in tech_stack:
+    p = tf.add_paragraph()
+    p.text = tech
+    p.level = 0
+
+# Slide 6: AgentPlaces Dashboard
+slide = prs.slides.add_slide(slide_layout)
+slide.shapes.title.text = "AgentPlaces Dashboard"
+tf = slide.shapes.placeholders[1].text_frame
+dashboard_points = [
+    "Agent oluşturma, düzenleme, silme",
+    "Dosya yükleme ve analiz sonuçları görüntüleme",
+    "Agent logları ve debug ekranı",
+    "Yanıtları izleme ve yeniden gönderme"
+]
+for dp in dashboard_points:
+    p = tf.add_paragraph()
+    p.text = dp
+    p.level = 0
+
+# Slide 7: Gelişmiş Özellikler ve Yol Haritası
+slide = prs.slides.add_slide(slide_layout)
+slide.shapes.title.text = "Gelişmiş Özellikler & Yol Haritası"
+tf = slide.shapes.placeholders[1].text_frame
+roadmap = [
+    "🔐 İzin Yönetimi",
+    "🧩 Plugin Desteği",
+    "🌐 API Entegrasyonu",
+    "🔍 Gelişmiş Loglama",
+    "📦 Export/Import Özelliği"
+]
+for rp in roadmap:
+    p = tf.add_paragraph()
+    p.text = rp
+    p.level = 0
+
+# Slide 8: Sprint 1 Planı
+slide = prs.slides.add_slide(slide_layout)
+slide.shapes.title.text = "Sprint 1 Planı (7-10 Gün)"
+tf = slide.shapes.placeholders[1].text_frame
+sprint_tasks = [
+    "Backend: NestJS + MongoDB + Redis + BullMQ entegrasyonu",
+    "Agent API: CRUD operasyonları",
+    "Mail-Analyst Agent prototipi",
+    "React: Basit agent listeleme & detay sayfası",
+    "PDF yükleme & özetleme görevinin uygulanması"
+]
+for task in sprint_tasks:
+    p = tf.add_paragraph()
+    p.text = task
+    p.level = 0
+
+# Save the presentation file
+file_path = "/mnt/data/AgentPlaces_Presentation.pptx"
+prs.save(file_path)
+
+file_path
