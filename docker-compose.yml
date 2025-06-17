@@ -7,8 +7,8 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: agentplaces
-      MONGO_INITDB_ROOT_PASSWORD: development123
+      MONGO_INITDB_ROOT_USERNAME: agentplaces_admin
+      MONGO_INITDB_ROOT_PASSWORD: "Db3kL7mQ5vR9nP2wE6Secure"
       MONGO_INITDB_DATABASE: agentplaces
     volumes:
       - mongodb_data:/data/db
@@ -23,7 +23,7 @@ services:
     restart: always
     ports:
       - "6379:6379"
-    command: redis-server --appendonly yes --requirepass development123
+    command: redis-server --appendonly yes --requirepass "Kx9mQ7vR2nL5pW8bT6sE4yU1cA3zSecure"
     volumes:
       - redis_data:/data
     networks:
@@ -38,8 +38,8 @@ services:
       - "9000:9000"
       - "9001:9001"
     environment:
-      MINIO_ROOT_USER: agentplaces
-      MINIO_ROOT_PASSWORD: development123
+      MINIO_ROOT_USER: agentplaces_admin
+      MINIO_ROOT_PASSWORD: "Mp7nQ4kL9vR2wE6SecurePass"
     command: server /data --console-address ":9001"
     volumes:
       - minio_data:/data

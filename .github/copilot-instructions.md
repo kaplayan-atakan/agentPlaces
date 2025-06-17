@@ -146,7 +146,8 @@ npm start
 1. Değişiklikleri yap
 2. `.\restart.ps1` komutu ile servisleri yeniden başlat
 3. API endpointleri test et: `curl http://localhost:2809/agents`
-4. Frontend test et: http://localhost:3009
-5. Değişiklikleri commit ve push et
+4. Curl komutu Türkçe karakterlerle sorun yaşıyor. Test agent dosyasını kullanarak test et.
+5. Frontend test et: http://localhost:3009
+6. Değişiklikleri commit ve push et
 
 Bu instruction'lar doğrultusunda geliştirme yaparken her zaman ölçeklenebilirlik, modülerlik ve performansı göz önünde bulundur.
