@@ -7,12 +7,13 @@
 import axios from 'axios';
 import { Agent, CreateAgentDto, UpdateAgentDto } from '../types/agent.types';
 import { ApiError, TaskInfo, QueueStats } from '../types/api.types';
+import { FileUploadResponse, FileInfo, QueueTask, CreateTaskRequest } from '../types/file.types';
 
 class ApiService {
   private api: any;
   private baseURL: string;
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+    this.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:2809';
     
     this.api = axios.create({
       baseURL: `${this.baseURL}/api`,
@@ -82,82 +83,145 @@ class ApiService {
       path: error.config?.url || '',
     };
   }
-
   // Agent Management API Methods
   async getAgents(): Promise<Agent[]> {
-    const response = await this.api.get('/api/agents');
+    const response = await this.api.get('/agents');
     return response.data;
   }
 
   async getAgent(id: string): Promise<Agent> {
-    const response = await this.api.get(`/api/agents/${id}`);
+    const response = await this.api.get(`/agents/${id}`);
     return response.data;
   }
 
   async createAgent(agentData: CreateAgentDto): Promise<Agent> {
-    const response = await this.api.post('/api/agents', agentData);
+    const response = await this.api.post('/agents', agentData);
     return response.data;
   }
 
   async updateAgent(id: string, agentData: UpdateAgentDto): Promise<Agent> {
-    const response = await this.api.patch(`/api/agents/${id}`, agentData);
+    const response = await this.api.patch(`/agents/${id}`, agentData);
     return response.data;
   }
 
   async deleteAgent(id: string): Promise<void> {
-    await this.api.delete(`/api/agents/${id}`);
+    await this.api.delete(`/agents/${id}`);
   }
 
   async toggleAgentStatus(id: string): Promise<Agent> {
-    const response = await this.api.patch(`/api/agents/${id}/toggle`);
+    const response = await this.api.patch(`/agents/${id}/toggle`);
     return response.data;
   }
 
   // Agent Execution API Methods
   async executeAgent(id: string, input: any): Promise<any> {
-    const response = await this.api.post(`/api/agents/${id}/execute`, { input });
+    const response = await this.api.post(`/agents/${id}/execute`, { input });
     return response.data;
-  }
-
-  // File Management API Methods
-  async uploadFile(file: File, onProgress?: (progress: number) => void): Promise<any> {
+  }  // File Management API Methods
+  async uploadFile(file: File, onProgress?: (progress: number) => void): Promise<FileUploadResponse> {
     const formData = new FormData();
     formData.append('file', file);
 
-    const response = await this.api.post('/api/files/upload', formData, {
+    const response = await this.api.post('/files/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
+      },
+      onUploadProgress: (progressEvent: any) => {
+        if (onProgress && progressEvent.total) {
+          const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          onProgress(progress);
+        }
       },
     });
 
     return response.data;
   }
 
+  async getFiles(): Promise<FileInfo[]> {
+    const response = await this.api.get('/files');
+    return response.data;
+  }
+
+  async getFileInfo(fileId: string): Promise<FileInfo> {
+    const response = await this.api.get(`/files/${fileId}`);
+    return response.data;
+  }
+
+  async processFile(fileId: string): Promise<any> {
+    const response = await this.api.post(`/files/${fileId}/process`);
+    return response.data;
+  }
+
+  async getFileAnalysis(fileId: string): Promise<any> {
+    const response = await this.api.get(`/files/${fileId}/analysis`);
+    return response.data;
+  }
+
   async getFile(fileId: string): Promise<Blob> {
-    const response = await this.api.get(`/api/files/${fileId}`, {
+    const response = await this.api.get(`/files/${fileId}`, {
       responseType: 'blob',
     });
     return response.data;
   }
 
   async deleteFile(fileId: string): Promise<void> {
-    await this.api.delete(`/api/files/${fileId}`);
+    await this.api.delete(`/files/${fileId}`);
+  }
+  // Queue Management API Methods
+  async createTask(taskRequest: CreateTaskRequest): Promise<QueueTask> {
+    const response = await this.api.post('/queue/tasks', taskRequest);
+    return response.data;
   }
 
-  // Queue Management API Methods
+  async getTask(taskId: string, taskType: string): Promise<QueueTask> {
+    const response = await this.api.get(`/queue/tasks/${taskId}?type=${taskType}`);
+    return response.data;
+  }
+
   async getQueueStats(): Promise<QueueStats> {
-    const response = await this.api.get('/api/queue/stats');
+    const response = await this.api.get('/queue/stats');
+    return response.data;
+  }
+
+  async getRecentJobs(taskType?: string, limit = 50): Promise<QueueTask[]> {
+    const params = new URLSearchParams();
+    if (taskType) params.append('type', taskType);
+    params.append('limit', limit.toString());
+    
+    const response = await this.api.get(`/queue/jobs?${params.toString()}`);
+    return response.data;
+  }
+
+  async pauseQueue(taskType: string): Promise<void> {
+    await this.api.patch('/queue/pause', { type: taskType });
+  }
+
+  async resumeQueue(taskType: string): Promise<void> {
+    await this.api.patch('/queue/resume', { type: taskType });
+  }
+
+  async retryTask(taskId: string, taskType: string, newData?: any): Promise<void> {
+    await this.api.post(`/queue/tasks/${taskId}/retry`, { 
+      taskId, 
+      newData 
+    });
+  }
+
+  async deleteTask(taskId: string, taskType: string): Promise<void> {
+    await this.api.delete(`/queue/tasks/${taskId}?type=${taskType}`);
+  }
+
+  async cleanQueue(taskType: string, olderThan: number): Promise<{ cleaned: number }> {
+    const response = await this.api.delete('/queue/clean', {
+      data: { type: taskType, olderThan }
+    });
     return response.data;
   }
 
   async getTasks(status?: string): Promise<TaskInfo[]> {
     const params = status ? { status } : {};
-    const response = await this.api.get('/api/queue/tasks', { params });
+    const response = await this.api.get('/queue/tasks', { params });
     return response.data;
-  }
-
-  async retryTask(taskId: string): Promise<void> {
-    await this.api.post(`/api/queue/tasks/${taskId}/retry`);
   }
 
   // Health Check

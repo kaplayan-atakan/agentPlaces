@@ -2,7 +2,9 @@ import { registerAs } from '@nestjs/config';
 
 export default registerAs('database', () => ({
   mongodb: {
-    uri: process.env.MONGODB_URI || 'mongodb://agentplaces:development123@localhost:27017/agentplaces?authSource=admin',
+    uri:
+      process.env.MONGODB_URI ||
+      'mongodb://agentplaces:development123@localhost:27017/agentplaces?authSource=admin',
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,

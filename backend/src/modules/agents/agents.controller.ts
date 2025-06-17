@@ -1,16 +1,16 @@
-import { 
-  Controller, 
-  Get, 
-  Post, 
-  Body, 
-  Patch, 
-  Param, 
-  Delete, 
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
   Query,
   UsePipes,
   ValidationPipe,
   HttpStatus,
-  HttpCode
+  HttpCode,
 } from '@nestjs/common';
 import { AgentsService } from './agents.service';
 import { CreateAgentDto } from './dto/create-agent.dto';
@@ -43,7 +43,10 @@ export class AgentsController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateAgentDto: UpdateAgentDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateAgentDto: UpdateAgentDto,
+  ) {
     return this.agentsService.update(id, updateAgentDto);
   }
 

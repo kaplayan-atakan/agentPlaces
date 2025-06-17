@@ -1,0 +1,16 @@
+{
+  "name": "analyze-email",
+  "type": "mail_analysis", 
+  "data": {
+    "emailData": {
+      "id": "test-email-123",
+      "subject": "Test Email Subject",
+      "body": "This is a test email body for analysis.",
+      "from": "test@example.com",
+      "to": "user@agentplaces.com"
+    },
+    "analysisType": "sentiment"
+  },
+  "priority": 2,
+  "delay": 0
+}

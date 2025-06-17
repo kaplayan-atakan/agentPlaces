@@ -11,20 +11,20 @@ export class Agent {
   @Prop({ required: true, trim: true })
   description: string;
 
-  @Prop({ 
-    required: true, 
+  @Prop({
+    required: true,
     enum: ['mail-analyst', 'file-processor', 'general-assistant', 'custom'],
-    default: 'general-assistant'
+    default: 'general-assistant',
   })
   type: string;
 
   @Prop({ required: true })
   promptTemplate: string;
 
-  @Prop({ 
+  @Prop({
     required: true,
     enum: ['openai', 'local', 'groq'],
-    default: 'openai'
+    default: 'openai',
   })
   llmProvider: string;
 
@@ -34,7 +34,7 @@ export class Agent {
       maxTokens: 2000,
       temperature: 0.7,
       topP: 1,
-    }
+    },
   })
   llmConfig: {
     maxTokens: number;

@@ -33,7 +33,7 @@ export class AgentsService {
     const agent = await this.agentModel
       .findByIdAndUpdate(id, updateAgentDto, { new: true })
       .exec();
-    
+
     if (!agent) {
       throw new NotFoundException(`Agent with ID "${id}" not found`);
     }

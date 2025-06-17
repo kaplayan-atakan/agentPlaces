@@ -1,0 +1,6 @@
+{
+  "subject": "Urgent: System Issue",
+  "body": "Hello, we have a critical problem with our system. Please help us immediately!",
+  "from": "test@example.com",
+  "to": "support@agentplaces.com"
+}

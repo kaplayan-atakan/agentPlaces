@@ -1,0 +1,15 @@
+{
+  "name": "test-file-processing",
+  "type": "file_processing",
+  "data": {
+    "filePath": "/uploads/test.pdf",
+    "fileType": "pdf",
+    "userId": "test-user"
+  },
+  "priority": 2,
+  "delay": 0,
+  "options": {
+    "removeOnComplete": 10,
+    "removeOnFail": 5
+  }
+}
