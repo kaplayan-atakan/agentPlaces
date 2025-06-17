@@ -1,155 +1,317 @@
+/* File Upload Component - Design System Aligned */
+
 .file-upload-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
 .file-upload-dropzone {
-  border: 2px dashed #cbd5e0;
-  border-radius: 12px;
-  padding: 40px 20px;
+  border: 2px dashed var(--neutral-gray);
+  border-radius: var(--radius-3xl);
+  padding: var(--space-12) var(--space-8);
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: #f8f9fa;
-  min-height: 200px;
+  transition: all var(--transition-normal);
+  background: linear-gradient(135deg, var(--neutral-light) 0%, var(--neutral-white) 100%);
+  min-height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.file-upload-dropzone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(214, 35, 44, 0.05) 0%, rgba(178, 139, 103, 0.05) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
 .file-upload-dropzone:hover {
-  border-color: #007bff;
-  background-color: #f0f8ff;
+  border-color: var(--primary);
+  background: var(--neutral-white);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.file-upload-dropzone:hover::before {
+  opacity: 1;
 }
 
 .file-upload-dropzone.dragging {
-  border-color: #007bff;
-  background-color: #e6f3ff;
-  transform: scale(1.02);
+  border-color: var(--accent);
+  background: var(--neutral-white);
+  box-shadow: var(--shadow-xl);
+  transform: scale(1.02) translateY(-4px);
+}
+
+.file-upload-dropzone.dragging::before {
+  background: linear-gradient(135deg, rgba(136, 176, 75, 0.1) 0%, rgba(214, 35, 44, 0.05) 100%);
+  opacity: 1;
 }
 
 .file-upload-dropzone.uploading {
-  border-color: #28a745;
-  background-color: #f0fff4;
+  border-color: var(--accent);
+  background: var(--neutral-white);
   cursor: default;
+  box-shadow: var(--shadow-md);
+}
+
+.file-upload-dropzone.uploading::before {
+  background: linear-gradient(135deg, rgba(136, 176, 75, 0.1) 0%, rgba(136, 176, 75, 0.05) 100%);
+  opacity: 1;
 }
 
 .upload-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: var(--space-6);
+  position: relative;
+  z-index: 1;
 }
 
 .upload-icon {
-  font-size: 48px;
-  opacity: 0.7;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-4xl);
+  color: var(--neutral-white);
+  box-shadow: var(--shadow-lg);
+  position: relative;
 }
 
-.upload-content h3 {
+.upload-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.upload-text {
+  color: var(--neutral-charcoal);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
   margin: 0;
-  color: #343a40;
-  font-size: 24px;
-  font-weight: 600;
+  line-height: var(--leading-tight);
 }
 
-.upload-content p {
+.upload-subtext {
+  color: var(--neutral-medium);
+  font-size: var(--text-base);
   margin: 0;
-  color: #6c757d;
-  font-size: 16px;
+  line-height: var(--leading-normal);
+  max-width: 400px;
 }
 
-.browse-link {
-  color: #007bff;
-  text-decoration: underline;
-  font-weight: 500;
+.upload-button {
+  margin-top: var(--space-4);
+}
+
+/* File List Styles */
+.file-list {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.file-item {
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-gray);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-4) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.file-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .file-info {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-top: 10px;
-}
-
-.file-info small {
-  color: #868e96;
-  font-size: 12px;
-}
-
-.upload-progress {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: var(--space-4);
+  flex: 1;
 }
 
-.progress-circle {
-  position: relative;
+.file-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+  border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: var(--text-lg);
+  color: var(--neutral-white);
+  flex-shrink: 0;
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+  flex: 1;
+}
+
+.file-name {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--neutral-charcoal);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-size {
+  font-size: var(--text-sm);
+  color: var(--neutral-medium);
+  margin: 0;
+}
+
+.file-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* Progress Bar */
+.upload-progress {
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--neutral-gray);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-normal);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  animation: shimmer 1.5s ease-in-out infinite;
 }
 
 .progress-text {
-  position: absolute;
-  font-size: 14px;
-  font-weight: 600;
-  color: #007bff;
-}
-
-.upload-progress p {
-  margin: 0;
-  color: #28a745;
-  font-weight: 500;
-}
-
-.error-message {
-  margin-top: 15px;
-  padding: 12px;
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-  border-radius: 8px;
-  font-size: 14px;
   text-align: center;
+  font-size: var(--text-sm);
+  color: var(--neutral-medium);
+  margin-top: var(--space-2);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Error States */
+.upload-error {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-sm);
+  border: 1px solid var(--primary);
+}
+
+.file-item.error {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.file-item.error .file-name {
+  color: var(--primary-dark);
+}
+
+/* Success States */
+.file-item.success {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.file-item.success .file-name {
+  color: var(--accent-dark);
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.uploading .upload-icon {
+  animation: spin 2s linear infinite;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .file-upload-dropzone {
-    padding: 30px 15px;
-    min-height: 180px;
+    padding: var(--space-8) var(--space-4);
+    min-height: 240px;
   }
   
   .upload-icon {
-    font-size: 36px;
+    width: 64px;
+    height: 64px;
+    font-size: var(--text-3xl);
   }
   
-  .upload-content h3 {
-    font-size: 20px;
+  .upload-text {
+    font-size: var(--text-lg);
   }
   
-  .upload-content p {
-    font-size: 14px;
+  .upload-subtext {
+    font-size: var(--text-sm);
   }
-}
-
-/* Animation for success state */
-.file-upload-dropzone.uploading .upload-progress {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 1;
+  
+  .file-item {
+    padding: var(--space-3) var(--space-4);
   }
-  50% {
-    opacity: 0.7;
+  
+  .file-info {
+    gap: var(--space-3);
   }
-  100% {
-    opacity: 1;
+  
+  .file-icon {
+    width: 36px;
+    height: 36px;
+    font-size: var(--text-base);
   }
 }

@@ -1,93 +1,168 @@
 /**
  * AgentPlaces Frontend - Main Application Component
- * Ölçeklenebilir agent yönetim platformu ana bileşeni
+ * Modern UI/UX with corporate design system
  */
 
 import { useState } from 'react';
 import { AgentList } from './components/agent-manager/AgentList';
 import { FileManager } from './components/file-upload/FileManager';
+import { Homepage } from './components/Homepage';
 import { useApiHealth } from './hooks/useAgents';
-import { AlertCircle, CheckCircle, Clock } from 'lucide-react';
+import './styles/design-system.css';
+import './styles/components.css';
 import './App.css';
 
 function App() {
   const { isHealthy, lastCheck } = useApiHealth();
-  const [activeTab, setActiveTab] = useState<'agents' | 'files'>('agents');
+  const [activeTab, setActiveTab] = useState('home');
+
+  const getStatusIcon = () => {
+    if (isHealthy === null) return '⏳';
+    return isHealthy ? '✅' : '❌';
+  };
+
+  const getStatusText = () => {
+    if (isHealthy === null) return 'Kontrol ediliyor...';
+    return isHealthy ? 'Sistem Aktif' : 'Bağlantı Hatası';
+  };
+
+  const getStatusClass = () => {
+    if (isHealthy === null) return 'status-checking';
+    return isHealthy ? 'status-healthy' : 'status-error';
+  };
+
+  // Don't show header and navigation for homepage
+  if (activeTab === 'home') {
+    return (
+      <div className="app">
+        <Homepage />
+        {/* Floating navigation for homepage */}
+        <div className="floating-nav">
+          <button
+            onClick={() => setActiveTab('agents')}
+            className="floating-nav-btn"
+            title="Go to Agent Management"
+          >
+            🤖 Agents
+          </button>
+          <button
+            onClick={() => setActiveTab('files')}
+            className="floating-nav-btn"
+            title="Go to File Management"
+          >
+            📁 Files
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="App">
-      {/* Health Status Bar */}
-      <div className={`fixed top-0 left-0 right-0 z-40 px-4 py-2 text-sm ${
-        isHealthy === null 
-          ? 'bg-gray-100 text-gray-700' 
-          : isHealthy 
-            ? 'bg-green-50 text-green-700' 
-            : 'bg-red-50 text-red-700'
-      }`}>
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            {isHealthy === null ? (
-              <Clock className="w-4 h-4" />
-            ) : isHealthy ? (
-              <CheckCircle className="w-4 h-4" />
-            ) : (
-              <AlertCircle className="w-4 h-4" />
-            )}
-            <span>
-              API Durumu: {
-                isHealthy === null 
-                  ? 'Kontrol ediliyor...' 
-                  : isHealthy 
-                    ? 'Bağlı' 
-                    : 'Bağlantı Hatası'
-              }
-            </span>
+    <div className="app">
+      {/* Modern Header with Status */}
+      <header className="app-header">
+        <div className="container">
+          <div className="header-content">
+            {/* Logo & Brand */}
+            <div className="brand">
+              <div 
+                className="brand-icon"
+                onClick={() => setActiveTab('home')}
+                style={{ cursor: 'pointer' }}
+                title="Go to Homepage"
+              >
+                🤖
+              </div>
+              <div className="brand-text">
+                <h1 
+                  className="brand-title"
+                  onClick={() => setActiveTab('home')}
+                  style={{ cursor: 'pointer' }}
+                  title="Go to Homepage"
+                >
+                  AgentPlaces
+                </h1>
+                <p className="brand-subtitle">AI-Powered Platform</p>
+              </div>
+            </div>
+
+            {/* Status Indicator */}
+            <div className={`status-indicator ${getStatusClass()}`}>
+              <div className="status-content">
+                <span className="status-icon">{getStatusIcon()}</span>
+                <div className="status-details">
+                  <span className="status-text">{getStatusText()}</span>
+                  {lastCheck && (
+                    <small className="status-time">
+                      Son güncelleme: {lastCheck.toLocaleTimeString('tr-TR')}
+                    </small>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-          {lastCheck && (
-            <span className="text-xs opacity-75">
-              Son kontrol: {lastCheck.toLocaleTimeString('tr-TR')}
-            </span>
-          )}
         </div>
-      </div>
+      </header>
 
       {/* Navigation Tabs */}
-      <div className="pt-10 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="border-b border-gray-200 mb-6">
-            <nav className="-mb-px flex space-x-8">
-              <button
-                onClick={() => setActiveTab('agents')}
-                className={`whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'agents'
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                🤖 Agent Yönetimi
-              </button>
-              <button
-                onClick={() => setActiveTab('files')}
-                className={`whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'files'
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                📁 Dosya Yönetimi
-              </button>
-            </nav>
+      <nav className="navigation">
+        <div className="container">
+          <div className="nav-tabs">
+            <button
+              onClick={() => setActiveTab('home')}
+              className={`nav-tab ${activeTab === 'home' ? 'active' : ''}`}
+            >
+              <span className="nav-tab-icon">🏠</span>
+              <span className="nav-tab-text">Ana Sayfa</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('agents')}
+              className={`nav-tab ${activeTab === 'agents' ? 'active' : ''}`}
+            >
+              <span className="nav-tab-icon">🤖</span>
+              <span className="nav-tab-text">Agent Yönetimi</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('files')}
+              className={`nav-tab ${activeTab === 'files' ? 'active' : ''}`}
+            >
+              <span className="nav-tab-icon">📁</span>
+              <span className="nav-tab-text">Dosya Yönetimi</span>
+            </button>
           </div>
         </div>
-      </div>
+      </nav>
 
       {/* Main Content */}
-      <div className="px-4">
-        <div className="max-w-7xl mx-auto">
-          {activeTab === 'agents' && <AgentList />}
-          {activeTab === 'files' && <FileManager />}
+      <main className="main-content">
+        <div className="container">
+          <div className="content-area">
+            {activeTab === 'agents' && (
+              <section className="content-section">
+                <div className="section-header">
+                  <h2 className="section-title">Agent Yönetimi</h2>
+                  <p className="section-description">
+                    AI agent'larınızı oluşturun, yapılandırın ve yönetin
+                  </p>
+                </div>
+                <AgentList />
+              </section>
+            )}
+            
+            {activeTab === 'files' && (
+              <section className="content-section">
+                <div className="section-header">
+                  <h2 className="section-title">Dosya Yönetimi</h2>
+                  <p className="section-description">
+                    Dosyalarınızı yükleyin, işleyin ve analiz edin
+                  </p>
+                </div>
+                <FileManager />
+              </section>
+            )}
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
