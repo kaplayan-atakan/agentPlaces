@@ -1,0 +1,67 @@
+services:
+  # MongoDB - Ana veritabanı
+  mongodb:
+    image: mongo:7.0
+    container_name: agentplaces-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: agentplaces
+      MONGO_INITDB_ROOT_PASSWORD: development123
+      MONGO_INITDB_DATABASE: agentplaces
+    volumes:
+      - mongodb_data:/data/db
+      - ./infrastructure/docker/mongo-init:/docker-entrypoint-initdb.d
+    networks:
+      - agentplaces-network
+
+  # Redis - Cache ve Queue
+  redis:
+    image: redis:7.2-alpine
+    container_name: agentplaces-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --requirepass development123
+    volumes:
+      - redis_data:/data
+    networks:
+      - agentplaces-network
+
+  # MinIO - Dosya depolama (S3 compatible)
+  minio:
+    image: minio/minio:latest
+    container_name: agentplaces-minio
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: agentplaces
+      MINIO_ROOT_PASSWORD: development123
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - agentplaces-network
+
+  # MailHog - Email testing (geliştirme için)
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: agentplaces-mailhog
+    restart: always
+    ports:
+      - "1025:1025"  # SMTP
+      - "8025:8025"  # Web UI
+    networks:
+      - agentplaces-network
+
+volumes:
+  mongodb_data:
+  redis_data:
+  minio_data:
+
+networks:
+  agentplaces-network:
+    driver: bridge

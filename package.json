@@ -1,0 +1,39 @@
+{
+  "name": "agentplaces",
+  "version": "1.0.0",
+  "description": "Ölçeklenebilir Agent Yönetim Platformu",
+  "private": true,
+  "scripts": {
+    "restart": "powershell -ExecutionPolicy Bypass -File restart.ps1",
+    "restart:bash": "bash restart.sh",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "backend": "cd backend && npm run start:dev",
+    "frontend": "cd frontend && npm start",
+    "kill:node": "taskkill /f /im node.exe",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "setup": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "test": "cd backend && npm test && cd ../frontend && npm test",
+    "build": "cd backend && npm run build && cd ../frontend && npm run build",
+    "clean": "npm run kill:node && npm run docker:down"
+  },
+  "keywords": [
+    "agent",
+    "management",
+    "nestjs",
+    "react",
+    "mongodb",
+    "redis",
+    "microservices"
+  ],
+  "author": "AgentPlaces Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentPlaces - Ölçeklenebilir Agent Yönetim Platformu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2 {
+            color: #34495e;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #2980b9;
+            font-size: 1.3em;
+            margin: 15px 0 10px 0;
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tech-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .sprint {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sprint::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .sprint h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #bdc3c7;
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            border-color: #3498db;
+            background: #e8f4f8;
+        }
+        
+        .architecture-diagram {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background: #f1c40f;
+            color: #2c3e50;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .cta button {
+            background: white;
+            color: #00b894;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cta button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Ana Başlık -->
+        <div class="slide">
+            <h1>🚀 AgentPlaces</h1>
+            <div style="text-align: center; font-size: 1.3em; color: #7f8c8d; margin-bottom: 30px;">
+                Ölçeklenebilir Agent Yönetim Platformu
+            </div>
+            <div style="text-align: center; font-size: 1.1em;">
+                <span class="highlight">Modüler Mimari</span> + 
+                <span class="highlight">Mikroservis Yaklaşımı</span> + 
+                <span class="highlight">AI-Powered</span>
+            </div>
+        </div>
+
+        <!-- Proje Vizyonu -->
+        <div class="slide">
+            <h2><span class="emoji">🎯</span>Proje Vizyonu</h2>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">
+                AgentPlaces, kişisel agent'ların merkezi yönetimi için <strong>ölçeklenebilir</strong> 
+                ve <strong>modüler</strong> bir platform olarak tasarlanmıştır.
+            </p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>📧 Mail Loop Analizi</h3>
+                    <p>E-posta chain'lerini analiz ederek akıllı yanıtlar üretme</p>
+                </div>
+                <div class="feature">
+                    <h3>📄 Dosya Yorumlama</h3>
+                    <p>PDF, DOCX, Excel dosyalarını anlayıp özetleme</p>
+                </div>
+                <div class="feature">
+                    <h3>🤖 Özel Agent'lar</h3>
+                    <p>Kullanıcı ihtiyaçlarına göre özelleştirilebilir AI agent'ları</p>
+                </div>
+                <div class="feature">
+                    <h3>🔄 Queue Management</h3>
+                    <p>Asenkron görev işleme ve paralel processing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teknoloji Stack -->
+        <div class="slide">
+            <h2><span class="emoji">🔧</span>Teknoloji Stack (Ölçeklenebilirlik Odaklı)</h2>
+            
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h3>Backend - NestJS</h3>
+                    <p>Dependency Injection, Modular Architecture, TypeScript</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Frontend - React</h3>
+                    <p>Component-based, TypeScript, Modern UI</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Database - MongoDB</h3>
+                    <p>Horizontal Scaling, Sharding Ready, NoSQL</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Cache - Redis</h3>
+                    <p>Cluster Support, Distributed Caching</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Queue - BullMQ</h3>
+                    <p>Horizontal Worker Scaling, Job Processing</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Container - Docker</h3>
+                    <p>Microservice Deployment Ready</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mimari Yaklaşım -->
+        <div class="slide">
+            <h2><span class="emoji">🏗️</span>Ölçeklenebilir Mimari Yaklaşımı</h2>
+            
+            <div class="architecture-diagram">
+agentPlaces/
+├── backend/
+│   ├── src/
+│   │   ├── modules/
+│   │   │   ├── agents/           # Agent CRUD ve Management
+│   │   │   ├── file-processing/  # Dosya işleme servisleri
+│   │   │   ├── mail-analysis/    # Mail analiz engine
+│   │   │   ├── llm-integration/  # LLM servis adaptörleri
+│   │   │   ├── queue-manager/    # Task queue yönetimi
+│   │   │   └── auth/             # Kimlik doğrulama
+│   │   ├── shared/               # Ortak utilities
+│   │   └── config/               # Yapılandırma
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── agent-manager/    # Agent yönetim bileşenleri
+│   │   │   ├── file-upload/      # Dosya yükleme bileşenleri
+│   │   │   └── dashboard/        # Dashboard bileşenleri
+│   │   ├── services/             # API servis katmanı
+│   │   ├── hooks/                # Reusable React hooks
+│   │   └── stores/               # State management
+├── shared/
+│   ├── types/                    # TypeScript definitions
+│   ├── interfaces/               # Ortak interface'ler
+│   └── constants/                # Sabitler
+└── infrastructure/
+    ├── docker/                   # Container yapılandırması
+    ├── kubernetes/               # K8s deployment files
+    └── monitoring/               # Loglama ve izleme
+            </div>
+        </div>
+
+        <!-- Sprint Roadmap -->
+        <div class="slide">
+            <h2><span class="emoji">🗺️</span>Geliştirme Roadmap'i</h2>
+            
+            <div class="roadmap">
+                <div class="sprint">
+                    <h4>🎯 Sprint 1 (2-3 Hafta)</h4>
+                    <ul>
+                        <li>NestJS backend yapısını kurma</li>
+                        <li>MongoDB + Redis + BullMQ entegrasyonu</li>
+                        <li>Basit Agent CRUD API'leri</li>
+                        <li>React temel arayüz (agent listeleme)</li>
+                        <li>PDF upload ve özetleme prototipi</li>
+                    </ul>
+                </div>
+                
+                <div class="sprint">
+                    <h4>🔄 Sprint 2 (2-3 Hafta)</h4>
+                    <ul>
+                        <li>Dosya işleme modülleri (PDF, DOCX)</li>
+                        <li>Mail analiz engine geliştirme</li>
+                        <li>Queue system implementasyonu</li>
+                        <li>Agent dashboard UI geliştirme</li>
+                        <li>Mail thread görüntüleme</li>
+                    </ul>
+                </div>
+                
+                <div class="sprint">
+                    <h4>🤖 Sprint 3 (3-4 Hafta)</h4>
+                    <ul>
+                        <li>LLM entegrasyonu (OpenAI/Local)</li>
+                        <li>Advanced UI bileşenleri</li>
+                        <li>Kimlik doğrulama sistemi</li>
+                        <li>Agent prompt template sistemi</li>
+                        <li>Türkçe dil desteği</li>
+                    </ul>
+                </div>
+                
+                <div class="sprint">
+                    <h4>⚡ Sprint 4 (2-3 Hafta)</h4>
+                    <ul>
+                        <li>Performans optimizasyonu</li>
+                        <li>Monitoring ve logging</li>
+                        <li>Kapsamlı dokümantasyon</li>
+                        <li>Container deployment</li>
+                        <li>Testing coverage (%80+)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ölçeklenebilirlik Prensipleri -->
+        <div class="slide">
+            <h2><span class="emoji">📈</span>Ölçeklenebilirlik Prensipleri</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div>
+                    <h3>🔧 Modüler Yapı</h3>
+                    <ul>
+                        <li><strong>Mikro-Seviye Parçacıklar:</strong> Her fonksiyonalite bağımsız modül</li>
+                        <li><strong>Loose Coupling:</strong> Minimum bağımlılık</li>
+                        <li><strong>High Cohesion:</strong> Tek sorumluluk prensibi</li>
+                        <li><strong>Plugin Architecture:</strong> Runtime özellik ekleme</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>⚡ Performans Odaklı</h3>
+                    <ul>
+                        <li><strong>Database Indexing:</strong> Sorgu optimizasyonu</li>
+                        <li><strong>Multi-layer Caching:</strong> Redis ile hızlı erişim</li>
+                        <li><strong>Async Processing:</strong> Background job işleme</li>
+                        <li><strong>Connection Pooling:</strong> Verimli bağlantı yönetimi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- İlk Adımlar -->
+        <div class="slide">
+            <h2><span class="emoji">🚀</span>İlk Adımlarımız</h2>
+            
+            <ol style="font-size: 1.1em;">
+                <li><strong>Backend Foundation:</strong> NestJS project scaffolding</li>
+                <li><strong>Database Setup:</strong> MongoDB bağlantısı ve temel şema</li>
+                <li><strong>Redis Integration:</strong> Caching layer kurulumu</li>
+                <li><strong>BullMQ Setup:</strong> Queue management sistemi</li>
+                <li><strong>Agent Module:</strong> CRUD operations ve temel entity</li>
+                <li><strong>Frontend Init:</strong> React + TypeScript setup</li>
+                <li><strong>Docker Setup:</strong> Development environment containerization</li>
+            </ol>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #e8f6f3; border-radius: 10px;">
+                <h3>🎯 İlk Sprint Hedefi</h3>
+                <p>Temel agent oluşturma, listeleme ve basit dosya upload işlevselliği ile <strong>MVP (Minimum Viable Product)</strong> oluşturmak.</p>
+            </div>
+        </div>
+
+        <!-- Geliştirme Kuralları -->
+        <div class="slide">
+            <h2><span class="emoji">📋</span>Geliştirme Standartlarımız</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <h3>✅ Kod Kalitesi</h3>
+                    <ul>
+                        <li>SOLID prensipleri</li>
+                        <li>Clean Architecture</li>
+                        <li>Test coverage %80+</li>
+                        <li>TypeScript strict mode</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <h3>🔧 Türkçe Destek</h3>
+                    <ul>
+                        <li>Türkçe yorum ve dokümantasyon</li>
+                        <li>Kullanıcı arayüzü Türkçe</li>
+                        <li>Çok dilli API response'ları</li>
+                        <li>i18n implementasyonu</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <h3>📊 Monitoring</h3>
+                    <ul>
+                        <li>Structured logging (Winston)</li>
+                        <li>Metrics collection</li>
+                        <li>Health check endpoints</li>
+                        <li>Error tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta">
+            <h2 style="margin-bottom: 20px;">🎯 Projeyi Başlatalım!</h2>
+            <p style="font-size: 1.2em; margin-bottom: 25px;">
+                Ölçeklenebilir mimari ile AgentPlaces platformunu birlikte geliştirelim.
+            </p>
+            <button onclick="alert('Sprint 1 başlangıcı için hazırız! 🚀')">
+                Sprint 1\'e Başla
+            </button>
+        </div>
+        
+    </div>
+
+    <script>
+        // Smooth scroll efekti
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            slides.forEach(slide => {
+                observer.observe(slide);
+            });
+        });
+    </script>
+</body>
+</html>
