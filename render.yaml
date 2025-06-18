@@ -8,15 +8,19 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 3000
       - key: MONGODB_URI
-        fromDatabase:
-          name: agentplaces-mongodb
-          property: connectionString
+        value: mongodb+srv://agentplaces:AVfYJZzuaW9TsTg2@agentplaces.fi3xt9v.mongodb.net/agentplaces?retryWrites=true&w=majority&appName=AgentPlaces
       - key: REDIS_URL
         fromService:
           name: agentplaces-redis
           type: redis
           property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://kaplayan-atakan.github.io
 
   # Worker Service for Background Jobs
   - type: worker
@@ -28,9 +32,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: MONGODB_URI
-        fromDatabase:
-          name: agentplaces-mongodb
-          property: connectionString
+        value: mongodb+srv://agentplaces:AVfYJZzuaW9TsTg2@agentplaces.fi3xt9v.mongodb.net/agentplaces?retryWrites=true&w=majority&appName=AgentPlaces
       - key: REDIS_URL
         fromService:
           name: agentplaces-redis
@@ -40,10 +42,4 @@ services:
   # Redis Service
   - type: redis
     name: agentplaces-redis
-    ipAllowList: []
     plan: free
-
-databases:
-  - name: agentplaces-mongodb
-    type: mongodb
-    ipAllowList: []
