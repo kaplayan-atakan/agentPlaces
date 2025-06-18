@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/agentPlaces/static/css/main.f27bd2d5.css",
+    "main.js": "/agentPlaces/static/js/main.4b6051a1.js",
+    "static/js/535.9eff4c54.chunk.js": "/agentPlaces/static/js/535.9eff4c54.chunk.js",
+    "index.html": "/agentPlaces/index.html",
+    "main.f27bd2d5.css.map": "/agentPlaces/static/css/main.f27bd2d5.css.map",
+    "main.4b6051a1.js.map": "/agentPlaces/static/js/main.4b6051a1.js.map",
+    "535.9eff4c54.chunk.js.map": "/agentPlaces/static/js/535.9eff4c54.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f27bd2d5.css",
+    "static/js/main.4b6051a1.js"
+  ]
+}
