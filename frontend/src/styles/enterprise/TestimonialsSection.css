@@ -1,0 +1,152 @@
+/* Testimonials Section */
+.testimonials-section {
+  background-color: #fff;
+}
+
+.testimonials-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.testimonial-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 40px 30px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.quote-mark {
+  font-size: 4rem;
+  color: #0052cc;
+  opacity: 0.3;
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-family: Georgia, serif;
+}
+
+.quote {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  font-style: italic;
+  margin: 40px 0 30px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.author-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e0e0e0;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #0052cc;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.case-studies-link {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px;
+  background: #e4eeff;
+  border-radius: 8px;
+}
+
+.case-studies-link p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.case-studies-link .text-btn {
+  font-size: 1.1rem;
+  color: #0052cc;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.case-studies-link .text-btn:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .testimonials-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .testimonial-card {
+    padding: 30px 25px;
+  }
+  
+  .quote-mark {
+    font-size: 3rem;
+    top: 15px;
+    left: 25px;
+  }
+  
+  .quote {
+    font-size: 1rem;
+    margin: 35px 0 25px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-card {
+    padding: 25px 20px;
+  }
+  
+  .quote-mark {
+    font-size: 2.5rem;
+    top: 10px;
+    left: 20px;
+  }
+  
+  .quote {
+    font-size: 0.95rem;
+    margin: 30px 0 20px 0;
+  }
+  
+  .author-info {
+    gap: 12px;
+  }
+  
+  .author-image {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .author-name {
+    font-size: 0.9rem;
+  }
+}

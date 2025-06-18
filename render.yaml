@@ -1,0 +1,49 @@
+services:
+  # NestJS API Service
+  - type: web
+    name: agentplaces-api
+    env: node
+    buildCommand: cd backend && npm ci && npm run build
+    startCommand: cd backend && npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: agentplaces-mongodb
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: agentplaces-redis
+          type: redis
+          property: connectionString
+
+  # Worker Service for Background Jobs
+  - type: worker
+    name: agentplaces-worker
+    env: node
+    buildCommand: cd backend && npm ci && npm run build
+    startCommand: cd backend && npm run start:worker
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: agentplaces-mongodb
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: agentplaces-redis
+          type: redis
+          property: connectionString
+
+  # Redis Service
+  - type: redis
+    name: agentplaces-redis
+    ipAllowList: []
+    plan: free
+
+databases:
+  - name: agentplaces-mongodb
+    type: mongodb
+    ipAllowList: []

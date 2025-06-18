@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { AgentList } from './components/agent-manager/AgentList';
 import { FileManager } from './components/file-upload/FileManager';
 import { Homepage } from './components/Homepage';
+import EnterprisePage from './pages/EnterprisePage';
 import { useApiHealth } from './hooks/useAgents';
 import './styles/design-system.css';
 import './styles/components.css';
@@ -31,13 +32,53 @@ function App() {
     return isHealthy ? 'status-healthy' : 'status-error';
   };
 
-  // Don't show header and navigation for homepage
+  // Don't show header and navigation for homepage and enterprise page
   if (activeTab === 'home') {
     return (
       <div className="app">
         <Homepage />
         {/* Floating navigation for homepage */}
         <div className="floating-nav">
+          <button
+            onClick={() => setActiveTab('agents')}
+            className="floating-nav-btn"
+            title="Go to Agent Management"
+          >
+            🤖 Agents
+          </button>
+          <button
+            onClick={() => setActiveTab('files')}
+            className="floating-nav-btn"
+            title="Go to File Management"
+          >
+            📁 Files
+          </button>
+          <button
+            onClick={() => setActiveTab('enterprise')}
+            className="floating-nav-btn"
+            title="Go to Enterprise"
+          >
+            🏢 Enterprise
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Enterprise page with its own navigation
+  if (activeTab === 'enterprise') {
+    return (
+      <div className="app">
+        <EnterprisePage />
+        {/* Floating navigation for enterprise page */}
+        <div className="floating-nav">
+          <button
+            onClick={() => setActiveTab('home')}
+            className="floating-nav-btn"
+            title="Go to Homepage"
+          >
+            🏠 Home
+          </button>
           <button
             onClick={() => setActiveTab('agents')}
             className="floating-nav-btn"
@@ -128,6 +169,13 @@ function App() {
             >
               <span className="nav-tab-icon">📁</span>
               <span className="nav-tab-text">Dosya Yönetimi</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('enterprise')}
+              className={`nav-tab ${activeTab === 'enterprise' ? 'active' : ''}`}
+            >
+              <span className="nav-tab-icon">🏢</span>
+              <span className="nav-tab-text">Enterprise</span>
             </button>
           </div>
         </div>

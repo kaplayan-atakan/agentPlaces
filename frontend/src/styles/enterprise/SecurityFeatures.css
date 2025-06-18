@@ -1,0 +1,137 @@
+/* Security Features Section */
+.security-features {
+  background-color: #1a1a2e;
+  color: white;
+}
+
+.security-features .section-header h2 {
+  color: white;
+}
+
+.security-features .section-header p {
+  color: #ccc;
+}
+
+.security-architecture {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.security-architecture img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 60px 0;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s, background-color 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 82, 204, 0.2);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+}
+
+.feature-icon i {
+  font-size: 32px;
+  color: #4da6ff;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.security-cta {
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px;
+  background: rgba(0, 82, 204, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 82, 204, 0.2);
+}
+
+.security-cta h3 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.security-cta .primary-btn {
+  background-color: #4da6ff;
+  border-color: #4da6ff;
+}
+
+.security-cta .primary-btn:hover {
+  background-color: #3399ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .feature-card {
+    padding: 25px;
+  }
+  
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .feature-icon i {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-card {
+    padding: 20px;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .security-cta {
+    padding: 30px 20px;
+  }
+  
+  .security-cta h3 {
+    font-size: 1.5rem;
+  }
+}
