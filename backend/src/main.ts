@@ -6,8 +6,10 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
   const configService = app.get(ConfigService);
+
+  // Enable CORS for production and development
+  app.enableCors(configService.get('cors'));
 
   // Request logging
   app.use((req: any, res: any, next: any) => {
@@ -16,7 +18,6 @@ async function bootstrap() {
     );
     next();
   });
-
   // Global validation pipe
   app.useGlobalPipes(
     new ValidationPipe({
@@ -25,27 +26,17 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  // CORS configuration
-  app.enableCors({
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:3001',
-      'http://localhost:3009', // Frontend port
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  });
 
   // Global prefix
   app.setGlobalPrefix('api');
-  const port = configService.get<number>('app.port') || 3001;
-  console.log(`🌐 CORS enabled for: http://localhost:3009`);
+  
+  // Ensure Render can assign port dynamically
+  const port = configService.get('port');
   await app.listen(port);
-
-  console.log(
-    `🚀 AgentPlaces Backend is running on: http://localhost:${port}/api`,
-  );
-  console.log(`📊 Environment: ${configService.get('app.environment')}`);
+  
+  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`🚀 AgentPlaces Backend is running on: http://localhost:${port}/api`);
+  console.log(`📊 Environment: ${configService.get('NODE_ENV') || 'development'}`);
+  console.log(`🌐 CORS enabled for: ${configService.get('cors.origin')}`);
 }
 bootstrap();

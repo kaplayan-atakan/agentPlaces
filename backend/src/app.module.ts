@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BullModule } from '@nestjs/bull';
 import { AppController } from './app.controller';
@@ -8,27 +8,34 @@ import { AgentsModule } from './modules/agents/agents.module';
 import { FileProcessingModule } from './modules/file-processing/file-processing.module';
 import { MailAnalysisModule } from './modules/mail-analysis/mail-analysis.module';
 import { QueueManagerModule } from './modules/queue-manager/queue-manager.module';
-import appConfig from './config/app.config';
-import databaseConfig from './config/database.config';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [appConfig, databaseConfig],
+      load: [configuration],
     }),
     MongooseModule.forRootAsync({
-      useFactory: () => ({
-        uri:
-          process.env.MONGODB_URI ||
-          'mongodb://agentplaces:development123@localhost:27017/agentplaces?authSource=admin',
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('database.uri'),
       }),
     }),
-    BullModule.forRoot({
-      redis: {
-        host: process.env.REDIS_HOST || 'localhost',
-        port: parseInt(process.env.REDIS_PORT || '6379'),
-        password: process.env.REDIS_PASSWORD,
+    BullModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => {
+        const redisUrl = configService.get<string>('redis.url');
+        if (redisUrl.startsWith('redis://')) {
+          return { redis: { url: redisUrl } };
+        }
+        return {
+          redis: {
+            host: process.env.REDIS_HOST || 'localhost',
+            port: parseInt(process.env.REDIS_PORT || '6379'),
+            password: process.env.REDIS_PASSWORD,
+          },
+        };
       },
     }),
     AgentsModule,

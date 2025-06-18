@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Generated files
+*.d.ts
+
+# Test files
+**/*.spec.ts
+**/*.test.ts
+test/
+
+# Config files
+*.config.js
+*.config.mjs
+eslint.config.mjs
+
+# Uploads and temp files
+uploads/
+temp/
+tmp/
+
+# Logs
+logs/
+*.log

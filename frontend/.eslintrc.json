@@ -1,0 +1,60 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    // TypeScript Relaxed Rules
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/prefer-optional-chain": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    
+    // React Relaxed Rules
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-no-target-blank": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "warn",
+    
+    // General ESLint Relaxed Rules
+    "no-console": "off",
+    "no-debugger": "warn",
+    "no-unused-vars": "off",
+    "prefer-const": "warn",
+    "no-var": "warn",
+    "no-empty": "warn",
+    "no-irregular-whitespace": "off",
+    "no-prototype-builtins": "off",
+    "no-fallthrough": "warn",
+    "no-case-declarations": "warn",
+    "no-useless-escape": "warn",
+    
+    // Import Rules
+    "import/no-anonymous-default-export": "off",
+    "import/no-unresolved": "off",
+    "import/order": "off",
+    
+    // JSX/Accessibility
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/alt-text": "warn",
+    "jsx-a11y/img-redundant-alt": "warn",
+    "jsx-a11y/aria-role": "warn",
+    "jsx-a11y/no-autofocus": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

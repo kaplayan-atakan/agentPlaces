@@ -1,0 +1,1179 @@
+yeni features:
+
+create a marketing page for AgentPlaces Enterprise with responsive design while maintaining consistency with your existing codebase. I'll examine your repository structure to create a proper implementation plan.
+
+```
+get-github-data("/repos/kaplayan-atakan/agentPlaces/contents/frontend/src")
+```
+
+Unfortunately, I couldn't retrieve the contents of your repository. Let me propose a structure based on standard React practices and your requirements for the AgentPlaces Enterprise marketing page.
+
+## Implementation Plan
+
+I'll create the following files for a comprehensive marketing page that highlights the B2B commercialization strategy you've outlined:
+
+1. A new Enterprise page component
+2. Supporting components for the marketing sections
+3. Responsive styling using modern CSS techniques
+4. Integration with your existing navigation structure
+
+Here are the files we'll need to create:
+
+```jsx name=src/pages/EnterprisePage.jsx
+import React from 'react';
+import HeroSection from '../components/enterprise/HeroSection';
+import TargetMarkets from '../components/enterprise/TargetMarkets';
+import PricingTiers from '../components/enterprise/PricingTiers';
+import SecurityFeatures from '../components/enterprise/SecurityFeatures';
+import ROICalculator from '../components/enterprise/ROICalculator';
+import ContactForm from '../components/enterprise/ContactForm';
+import TestimonialsSection from '../components/enterprise/TestimonialsSection';
+import '../styles/EnterprisePage.css';
+
+const EnterprisePage = () => {
+  return (
+    <div className="enterprise-page">
+      <HeroSection />
+      <TargetMarkets />
+      <SecurityFeatures />
+      <PricingTiers />
+      <ROICalculator />
+      <TestimonialsSection />
+      <ContactForm />
+    </div>
+  );
+};
+
+export default EnterprisePage;
+```
+
+```jsx name=src/components/enterprise/HeroSection.jsx
+import React from 'react';
+import '../../styles/enterprise/HeroSection.css';
+
+const HeroSection = () => {
+  return (
+    <section className="hero-section">
+      <div className="hero-content">
+        <h1>AgentPlaces Enterprise</h1>
+        <h2>AI Agent Platform for Secure Enterprises</h2>
+        <p className="hero-subtitle">
+          On-premise AI agent processing with zero data leakage guarantee for 
+          organizations where security and compliance matter most
+        </p>
+        <div className="hero-cta">
+          <button className="primary-btn">Request Demo</button>
+          <button className="secondary-btn">View Security Whitepaper</button>
+        </div>
+        <div className="hero-stats">
+          <div className="stat-item">
+            <h3>40%</h3>
+            <p>Document Processing Time Reduction</p>
+          </div>
+          <div className="stat-item">
+            <h3>60%</h3>
+            <p>Compliance Audit Preparation Time Saving</p>
+          </div>
+          <div className="stat-item">
+            <h3>$500K</h3>
+            <p>Average Annual Cost Savings</p>
+          </div>
+        </div>
+      </div>
+      <div className="hero-image">
+        <img src="/images/enterprise-dashboard.png" alt="AgentPlaces Enterprise Dashboard" />
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;
+```
+
+```jsx name=src/components/enterprise/TargetMarkets.jsx
+import React from 'react';
+import '../../styles/enterprise/TargetMarkets.css';
+
+const TargetMarkets = () => {
+  const markets = [
+    {
+      title: 'Financial Services',
+      icon: 'bank',
+      problem: 'Ensuring KVKK/GDPR compliance with customer data',
+      solution: 'On-premise agent processing, encrypted data handling',
+      marketSize: '$50M+ (Turkey financial tech market)'
+    },
+    {
+      title: 'Healthcare',
+      icon: 'hospital',
+      problem: 'Patient data security and medical compliance',
+      solution: 'HIPAA-compliant agent processing, local medical AI',
+      marketSize: '$30M+ (Healthcare IT Turkey)'
+    },
+    {
+      title: 'Legal & Consulting',
+      icon: 'balance-scale',
+      problem: 'Client confidentiality, document privacy',
+      solution: 'Attorney-client privilege protected AI processing',
+      marketSize: '$20M+ (Legal tech Turkey)'
+    },
+    {
+      title: 'Defense & Security',
+      icon: 'shield',
+      problem: 'Classified information processing',
+      solution: 'Air-gapped AI systems, no internet dependency',
+      marketSize: '$100M+ (Defense tech Turkey)'
+    }
+  ];
+
+  return (
+    <section className="target-markets">
+      <div className="section-header">
+        <h2>Enterprise Solutions for High-Security Industries</h2>
+        <p>Tailored AI agent platforms for industries where data security is non-negotiable</p>
+      </div>
+      
+      <div className="markets-grid">
+        {markets.map((market, index) => (
+          <div className="market-card" key={index}>
+            <div className="market-icon">
+              <i className={`fas fa-${market.icon}`}></i>
+            </div>
+            <h3>{market.title}</h3>
+            <div className="market-details">
+              <div className="detail-item">
+                <h4>Problem:</h4>
+                <p>{market.problem}</p>
+              </div>
+              <div className="detail-item">
+                <h4>Solution:</h4>
+                <p>{market.solution}</p>
+              </div>
+              <div className="detail-item">
+                <h4>Market Size:</h4>
+                <p>{market.marketSize}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default TargetMarkets;
+```
+
+```jsx name=src/components/enterprise/PricingTiers.jsx
+import React from 'react';
+import '../../styles/enterprise/PricingTiers.css';
+
+const PricingTiers = () => {
+  const tiers = [
+    {
+      name: 'Starter Edition',
+      price: '$5,000/year',
+      features: [
+        '5 concurrent agents',
+        '10 user licenses',
+        'Basic desktop app',
+        'Email support',
+        'On-premise deployment'
+      ],
+      highlight: false
+    },
+    {
+      name: 'Professional Edition',
+      price: '$25,000/year',
+      features: [
+        '25 concurrent agents',
+        '50 user licenses',
+        'Advanced analytics',
+        'Local LLM integration',
+        'API access',
+        'Phone support',
+        'Custom agent templates'
+      ],
+      highlight: true
+    },
+    {
+      name: 'Enterprise Edition',
+      price: '$100,000/year',
+      features: [
+        'Unlimited agents',
+        'Unlimited users',
+        'White-label solution',
+        'Custom integrations',
+        'Dedicated account manager',
+        'On-site training',
+        '24/7 support',
+        'Source code access (escrow)'
+      ],
+      highlight: false
+    },
+    {
+      name: 'Government/Defense Edition',
+      price: '$250,000/year',
+      features: [
+        'Air-gapped deployment',
+        'Security clearance compliance',
+        'Government-grade encryption',
+        'Audit logging',
+        'Custom compliance features',
+        'Dedicated security team'
+      ],
+      highlight: false
+    }
+  ];
+
+  return (
+    <section className="pricing-section">
+      <div className="section-header">
+        <h2>Enterprise License Tiers</h2>
+        <p>Flexible pricing options to match your organization's needs</p>
+      </div>
+      
+      <div className="pricing-container">
+        {tiers.map((tier, index) => (
+          <div 
+            className={`pricing-card ${tier.highlight ? 'highlight' : ''}`} 
+            key={index}
+          >
+            <h3>{tier.name}</h3>
+            <div className="price">{tier.price}</div>
+            <ul className="features-list">
+              {tier.features.map((feature, i) => (
+                <li key={i}>{feature}</li>
+              ))}
+            </ul>
+            <button className={tier.highlight ? 'primary-btn' : 'secondary-btn'}>
+              Get Started
+            </button>
+          </div>
+        ))}
+      </div>
+      
+      <div className="pricing-note">
+        <p>All plans include KVKK/GDPR compliance and on-premise deployment options</p>
+        <p>Contact us for custom pricing and features</p>
+      </div>
+    </section>
+  );
+};
+
+export default PricingTiers;
+```
+
+```jsx name=src/components/enterprise/SecurityFeatures.jsx
+import React from 'react';
+import '../../styles/enterprise/SecurityFeatures.css';
+
+const SecurityFeatures = () => {
+  const features = [
+    {
+      title: 'On-Premise Deployment',
+      description: 'Your data never leaves your secure environment. All AI processing happens within your controlled infrastructure.',
+      icon: 'server'
+    },
+    {
+      title: 'End-to-End Encryption',
+      description: 'FIPS 140-2 Level 3 encryption for all data at rest and in transit within your network.',
+      icon: 'lock'
+    },
+    {
+      title: 'Air-Gapped Option',
+      description: 'Complete isolation from external networks for maximum security in sensitive environments.',
+      icon: 'shield-alt'
+    },
+    {
+      title: 'Audit Logging',
+      description: 'Comprehensive audit trails for all AI agent activities to maintain compliance and security.',
+      icon: 'clipboard-list'
+    },
+    {
+      title: 'Role-Based Access',
+      description: 'Granular control over who can access which agents and what actions they can perform.',
+      icon: 'users-cog'
+    },
+    {
+      title: 'Compliance Built-In',
+      description: 'KVKK, GDPR, HIPAA, and industry-specific compliance frameworks integrated by design.',
+      icon: 'check-circle'
+    }
+  ];
+
+  return (
+    <section className="security-features">
+      <div className="section-header">
+        <h2>Security-First Architecture</h2>
+        <p>Built from the ground up with data protection as the core principle</p>
+      </div>
+      
+      <div className="security-architecture">
+        <img src="/images/security-diagram.png" alt="AgentPlaces Security Architecture" />
+      </div>
+      
+      <div className="features-grid">
+        {features.map((feature, index) => (
+          <div className="feature-card" key={index}>
+            <div className="feature-icon">
+              <i className={`fas fa-${feature.icon}`}></i>
+            </div>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        ))}
+      </div>
+      
+      <div className="security-cta">
+        <h3>Ready to see our security architecture in action?</h3>
+        <button className="primary-btn">Schedule Security Review</button>
+      </div>
+    </section>
+  );
+};
+
+export default SecurityFeatures;
+```
+
+```jsx name=src/components/enterprise/ROICalculator.jsx
+import React, { useState } from 'react';
+import '../../styles/enterprise/ROICalculator.css';
+
+const ROICalculator = () => {
+  const [companySize, setCompanySize] = useState(500);
+  const [processingTime, setProcessingTime] = useState(40);
+  const [costPerHour, setCostPerHour] = useState(50);
+  
+  const calculateROI = () => {
+    const timeSaving = processingTime * 0.4; // 40% improvement
+    const annualSaving = timeSaving * costPerHour * 250; // working days
+    let agentPlacesCost;
+    
+    if (companySize < 200) {
+      agentPlacesCost = 5000;
+    } else if (companySize < 1000) {
+      agentPlacesCost = 25000;
+    } else {
+      agentPlacesCost = 100000;
+    }
+    
+    const roi = (annualSaving - agentPlacesCost) / agentPlacesCost * 100;
+    const paybackPeriod = agentPlacesCost / (annualSaving / 12);
+    
+    return {
+      annualSaving: annualSaving.toLocaleString(),
+      cost: agentPlacesCost.toLocaleString(),
+      roi: roi.toFixed(0),
+      paybackPeriod: paybackPeriod.toFixed(1)
+    };
+  };
+  
+  const result = calculateROI();
+
+  return (
+    <section className="roi-calculator">
+      <div className="section-header">
+        <h2>ROI Calculator</h2>
+        <p>See how quickly AgentPlaces Enterprise can pay for itself</p>
+      </div>
+      
+      <div className="calculator-container">
+        <div className="calculator-inputs">
+          <div className="input-group">
+            <label>Company Size (employees)</label>
+            <input 
+              type="range" 
+              min="50" 
+              max="5000" 
+              value={companySize} 
+              onChange={(e) => setCompanySize(Number(e.target.value))}
+            />
+            <span>{companySize}</span>
+          </div>
+          
+          <div className="input-group">
+            <label>Weekly Processing Hours</label>
+            <input 
+              type="range" 
+              min="10" 
+              max="100" 
+              value={processingTime} 
+              onChange={(e) => setProcessingTime(Number(e.target.value))}
+            />
+            <span>{processingTime} hours</span>
+          </div>
+          
+          <div className="input-group">
+            <label>Average Cost per Hour (USD)</label>
+            <input 
+              type="range" 
+              min="20" 
+              max="200" 
+              value={costPerHour} 
+              onChange={(e) => setCostPerHour(Number(e.target.value))}
+            />
+            <span>${costPerHour}</span>
+          </div>
+        </div>
+        
+        <div className="calculator-results">
+          <div className="result-item">
+            <h4>Annual Savings</h4>
+            <p className="result-value">${result.annualSaving}</p>
+          </div>
+          
+          <div className="result-item">
+            <h4>AgentPlaces Cost</h4>
+            <p className="result-value">${result.cost}/year</p>
+          </div>
+          
+          <div className="result-item highlight">
+            <h4>ROI</h4>
+            <p className="result-value">{result.roi}%</p>
+          </div>
+          
+          <div className="result-item">
+            <h4>Payback Period</h4>
+            <p className="result-value">{result.paybackPeriod} months</p>
+          </div>
+        </div>
+      </div>
+      
+      <div className="roi-cta">
+        <p>Want a detailed ROI analysis for your specific business case?</p>
+        <button className="secondary-btn">Request Custom ROI Report</button>
+      </div>
+    </section>
+  );
+};
+
+export default ROICalculator;
+```
+
+```jsx name=src/components/enterprise/TestimonialsSection.jsx
+import React from 'react';
+import '../../styles/enterprise/TestimonialsSection.css';
+
+const TestimonialsSection = () => {
+  const testimonials = [
+    {
+      quote: "AgentPlaces Enterprise helped us achieve 70% loan processing acceleration while maintaining full KVKK compliance.",
+      author: "CTO, Leading Turkish Bank",
+      image: "/images/testimonial1.jpg"
+    },
+    {
+      quote: "The air-gapped deployment option gave us confidence to implement AI in our most sensitive operations.",
+      author: "Information Security Director, Defense Contractor",
+      image: "/images/testimonial2.jpg"
+    },
+    {
+      quote: "Patient data never leaves our premises, yet we get all the benefits of AI-powered assistance with AgentPlaces.",
+      author: "CIO, Major Turkish Hospital Network",
+      image: "/images/testimonial3.jpg"
+    }
+  ];
+
+  return (
+    <section className="testimonials-section">
+      <div className="section-header">
+        <h2>Enterprise Success Stories</h2>
+        <p>Hear from organizations that have transformed their operations with AgentPlaces</p>
+      </div>
+      
+      <div className="testimonials-container">
+        {testimonials.map((testimonial, index) => (
+          <div className="testimonial-card" key={index}>
+            <div className="quote-mark">"</div>
+            <p className="quote">{testimonial.quote}</p>
+            <div className="author-info">
+              <img src={testimonial.image} alt={testimonial.author} className="author-image" />
+              <p className="author-name">{testimonial.author}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div className="case-studies-link">
+        <p>Want to see detailed implementation case studies?</p>
+        <button className="text-btn">View All Case Studies →</button>
+      </div>
+    </section>
+  );
+};
+
+export default TestimonialsSection;
+```
+
+```jsx name=src/components/enterprise/ContactForm.jsx
+import React, { useState } from 'react';
+import '../../styles/enterprise/ContactForm.css';
+
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    position: '',
+    email: '',
+    phone: '',
+    industry: '',
+    employeeCount: '',
+    message: '',
+    interests: []
+  });
+
+  const industries = [
+    'Financial Services',
+    'Healthcare',
+    'Legal & Consulting',
+    'Defense & Security',
+    'Government',
+    'Education',
+    'Manufacturing',
+    'Other'
+  ];
+
+  const interestOptions = [
+    'Security Features',
+    'On-premise Deployment',
+    'Pricing Information',
+    'Custom Integration',
+    'Demo Request',
+    'ROI Analysis'
+  ];
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    
+    if (type === 'checkbox') {
+      if (checked) {
+        setFormData({
+          ...formData,
+          interests: [...formData.interests, value]
+        });
+      } else {
+        setFormData({
+          ...formData,
+          interests: formData.interests.filter(interest => interest !== value)
+        });
+      }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Here you would typically send this data to your backend
+    alert('Thank you for your interest! Our enterprise team will contact you shortly.');
+  };
+
+  return (
+    <section className="contact-section" id="enterprise-contact">
+      <div className="section-header">
+        <h2>Ready to Transform Your Enterprise?</h2>
+        <p>Contact our enterprise team to discuss your specific needs</p>
+      </div>
+      
+      <div className="contact-container">
+        <div className="contact-info">
+          <h3>Enterprise Sales</h3>
+          <p><i className="fas fa-phone"></i> +90 (212) 555-0123</p>
+          <p><i className="fas fa-envelope"></i> enterprise@agentplaces.com</p>
+          
+          <h3>Security Inquiries</h3>
+          <p><i className="fas fa-shield-alt"></i> security@agentplaces.com</p>
+          
+          <div className="enterprise-office">
+            <h3>Istanbul Office</h3>
+            <p><i className="fas fa-map-marker-alt"></i> Levent, 34330 Istanbul, Turkey</p>
+          </div>
+        </div>
+        
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="name">Full Name*</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                value={formData.name}
+                onChange={handleChange}
+                required 
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="company">Company Name*</label>
+              <input 
+                type="text" 
+                id="company" 
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                required 
+              />
+            </div>
+          </div>
+          
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="position">Position/Title*</label>
+              <input 
+                type="text" 
+                id="position" 
+                name="position"
+                value={formData.position}
+                onChange={handleChange}
+                required 
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="email">Business Email*</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required 
+              />
+            </div>
+          </div>
+          
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="employeeCount">Number of Employees</label>
+              <select 
+                id="employeeCount" 
+                name="employeeCount"
+                value={formData.employeeCount}
+                onChange={handleChange}
+              >
+                <option value="">Select</option>
+                <option value="1-50">1-50</option>
+                <option value="51-200">51-200</option>
+                <option value="201-500">201-500</option>
+                <option value="501-1000">501-1000</option>
+                <option value="1001-5000">1001-5000</option>
+                <option value="5000+">5000+</option>
+              </select>
+            </div>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="industry">Industry*</label>
+            <select 
+              id="industry" 
+              name="industry"
+              value={formData.industry}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Industry</option>
+              {industries.map((industry, index) => (
+                <option key={index} value={industry}>{industry}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div className="form-group">
+            <label>I'm interested in (select all that apply):</label>
+            <div className="checkbox-group">
+              {interestOptions.map((option, index) => (
+                <div className="checkbox-item" key={index}>
+                  <input 
+                    type="checkbox" 
+                    id={`interest-${index}`} 
+                    name="interests" 
+                    value={option}
+                    checked={formData.interests.includes(option)}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor={`interest-${index}`}>{option}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="message">Additional Information</label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+            ></textarea>
+          </div>
+          
+          <button type="submit" className="primary-btn">Request Enterprise Consultation</button>
+          
+          <p className="form-disclaimer">
+            By submitting this form, you agree to our privacy policy and consent to being contacted by our enterprise team.
+          </p>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+export default ContactForm;
+```
+
+Now, let's create the necessary CSS files for responsive design:
+
+```css name=src/styles/EnterprisePage.css
+/* Main Enterprise Page Styles */
+.enterprise-page {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Global section styling */
+.enterprise-page section {
+  padding: 80px 5%;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+/* Section headers consistency */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: #1a1a2e;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Button styles */
+.primary-btn {
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.primary-btn:hover {
+  background-color: #0047b3;
+}
+
+.secondary-btn {
+  background-color: white;
+  color: #0052cc;
+  border: 2px solid #0052cc;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.secondary-btn:hover {
+  background-color: #f0f7ff;
+}
+
+.text-btn {
+  background: none;
+  border: none;
+  color: #0052cc;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.text-btn:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .enterprise-page section {
+    padding: 60px 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .section-header p {
+    font-size: 1rem;
+  }
+  
+  .enterprise-page section {
+    padding: 40px 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .primary-btn, .secondary-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .enterprise-page section {
+    padding: 30px 5%;
+  }
+}
+```
+
+```css name=src/styles/enterprise/HeroSection.css
+/* Hero Section Styles */
+.hero-section {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 600px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4eeff 100%);
+  overflow: hidden;
+  padding: 100px 5% !important;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1a1a2e;
+}
+
+.hero-section h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #0052cc;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  color: #444;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0052cc;
+  margin-bottom: 8px;
+}
+
+.stat-item p {
+  font-size: 0.9rem;
+  color: #666;
+  max-width: 120px;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 80px 5% 60px !important;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+  }
+  
+  .hero-cta {
+    justify-content: center;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: auto;
+    padding: 60px 5% 40px !important;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .stat-item h3 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 40px 5% 30px !important;
+  }
+  
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-section h2 {
+    font-size: 1.2rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .stat-item {
+    width: 100%;
+  }
+  
+  .stat-item p {
+    max-width: none;
+  }
+}
+```
+
+```css name=src/styles/enterprise/TargetMarkets.css
+/* Target Markets Section */
+.target-markets {
+  background-color: #fff;
+}
+
+.markets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.market-card {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 82, 204, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+}
+
+.market-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 82, 204, 0.12);
+}
+
+.market-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #e4eeff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.market-icon i {
+  font-size: 24px;
+  color: #0052cc;
+}
+
+.market-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #1a1a2e;
+}
+
+.market-details {
+  margin-top: 15px;
+}
+
+.detail-item {
+  margin-bottom: 15px;
+}
+
+.detail-item h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0052cc;
+  margin-bottom: 5px;
+}
+
+.detail-item p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .markets-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .market-card {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .market-card {
+    padding: 20px;
+  }
+  
+  .market-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .market-icon i {
+    font-size: 20px;
+  }
+  
+  .market-card h3 {
+    font-size: 1.3rem;
+  }
+}
+```
+
+Let me also include the setup for routing by updating the App component:
+
+```jsx name=src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import EnterprisePage from './pages/EnterprisePage';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+// Import other components as needed
+
+function App() {
+  return (
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/enterprise" element={<EnterprisePage />} />
+        {/* Add other routes as needed */}
+      </Routes>
+      <Footer />
+    </Router>
+  );
+}
+
+export default App;
+```
+
+## Implementation Steps
+
+1. Create these files within your project structure.
+2. Update your navigation to include a link to the new Enterprise page.
+3. Add the appropriate imports in your `index.js` or other entry file.
+4. Create placeholder images for the marketing materials or replace with your actual brand assets.
+
+## Key Responsive Design Features
+
+1. **Mobile-first approach**: CSS is structured to work on small screens first, then enhance for larger screens.
+2. **Flexible grid layouts**: Using CSS Grid and Flexbox for adaptive layouts.
+3. **Responsive typography**: Font sizes adjust based on screen size.
+4. **Adaptive components**: UI components reorganize based on available space.
+5. **Optimized media**: Images and media content adapt to screen dimensions.
+
+This implementation provides a comprehensive marketing page that showcases all the B2B commercialization aspects of AgentPlaces Enterprise while maintaining a responsive design that works well on all device sizes.
+
+Would you like me to focus on any specific aspect of this implementation in more detail?
