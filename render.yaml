@@ -38,8 +38,8 @@ services:
           name: agentplaces-redis
           type: redis
           property: connectionString
-
   # Redis Service
   - type: redis
     name: agentplaces-redis
     plan: free
+    ipAllowList: []
