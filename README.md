@@ -191,21 +191,24 @@ git push origin main
 ## 📚 Deployment Dokümantasyonu
 
 ### 🚀 Production Deploy Rehberleri
-- **[📋 DEPLOYMENT-CHECKLIST.md](./DEPLOYMENT-CHECKLIST.md)** - 30 dakikada hızlı deployment
-- **[📖 PRODUCTION-DEPLOYMENT.md](./PRODUCTION-DEPLOYMENT.md)** - Detaylı step-by-step rehber
+- **[⚡ QUICK-DEPLOYMENT.md](./QUICK-DEPLOYMENT.md)** - Copy-paste komutlarla hızlı deployment
+- **[🎯 FIRST-DEPLOYMENT.md](./FIRST-DEPLOYMENT.md)** - İlk deployment için detaylı adım adım rehber
+- **[� DEPLOYMENT-STATUS.md](./DEPLOYMENT-STATUS.md)** - Mevcut proje durumu ve hazırlık analizi
+- **[�📋 DEPLOYMENT-CHECKLIST.md](./DEPLOYMENT-CHECKLIST.md)** - 30 dakikada hızlı deployment checklist
+- **[📖 PRODUCTION-DEPLOYMENT.md](./PRODUCTION-DEPLOYMENT.md)** - En detaylı step-by-step rehber
 - **[🔧 TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Sorun çözme kılavuzu
 - **[📋 DEPLOYMENT-GUIDE.md](./DEPLOYMENT-GUIDE.md)** - Genel deployment stratejisi
 
 ### ⚡ Hızlı Başlangıç
 ```bash
-# 1. Frontend deploy (GitHub Pages)
-cd frontend && npm run deploy
+# İlk kez deploy ediyorsanız
+# FIRST-DEPLOYMENT.md dosyasını takip edin (30 dakika)
 
-# 2. Backend deploy (Render Blueprint)  
-# render.yaml kullanarak otomatik deploy
+# Hızlı deploy için  
+# QUICK-DEPLOYMENT.md dosyasındaki komutları kullanın
 
-# 3. Test
-curl https://USERNAME.github.io/agentPlaces
+# Test
+curl https://kaplayan-atakan.github.io/agentPlaces
 curl https://backend-url.onrender.com/api/health
 ```
 
