@@ -1,8 +1,22 @@
 # AgentPlaces - Ölçeklenebilir Agent Yönetim Platformu
 
+## 👋 Merhaba! Hoş Geldiniz!
+
+**AgentPlaces**'e hoş geldiniz! Bu platform, kişisel agent yönetimi için ölçeklenebilir bir geliştirme workspace'idir.
+
 ## 🎯 Proje Hakkında
 
 AgentPlaces, kişisel agent yönetimi için ölçeklenebilir bir platform geliştirme workspace'idir. Modüler mimari ve mikro-servis yaklaşımı ile geliştirilmektedir.
+
+### 🚀 Türkçe Karşılama
+Bu proje tamamen Türkçe destekli olarak geliştirilmiştir. Tüm arayüz metinleri, API yanıtları ve dokümantasyon Türkçe olarak hazırlanmıştır.
+
+**Merhaba dediğinizde size şu özellikleri sunuyoruz:**
+- ✅ Tam Türkçe kullanıcı arayüzü
+- ✅ Türkçe API yanıtları ve hata mesajları
+- ✅ Türkçe agent prompt şablonları
+- ✅ Kapsamlı Türkçe dokümantasyon
+- ✅ Turkish-friendly variable naming
 
 ### 🔧 Teknoloji Stack
 - **Backend**: NestJS (Port: 2809)

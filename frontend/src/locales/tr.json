@@ -1,0 +1,84 @@
+{
+  "homepage": {
+    "title": "AgentPlaces",
+    "subtitle": "Ölçeklenebilir Agent Yönetim Platformu",
+    "description": "Yapay zeka agent'larınızı oluşturun, yönetin ve ölçeklendirin",
+    "getStarted": "Başlayın",
+    "learnMore": "Daha Fazla Bilgi",
+    "features": {
+      "agentManagement": {
+        "title": "AI Agent Yönetimi",
+        "description": "Gelişmiş yeteneklere sahip akıllı agent'lar oluşturun, yapılandırın ve dağıtın"
+      },
+      "analytics": {
+        "title": "Gelişmiş Analitik",
+        "description": "AI iş akışlarınız için gerçek zamanlı görüşler ve performans metrikleri"
+      },
+      "automation": {
+        "title": "Süreç Otomasyonu",
+        "description": "Akıllı otomasyon ve kuyruk yönetimi ile iş akışlarınızı kolaylaştırın"
+      },
+      "fileProcessing": {
+        "title": "Akıllı Dosya İşleme",
+        "description": "AI destekli görüşlerle belgeleri yükleyin, analiz edin ve işleyin"
+      }
+    },
+    "stats": {
+      "activeAgents": "Aktif Agent",
+      "filesProcessed": "İşlenen Dosya",
+      "uptime": "Çalışma Süresi",
+      "apiCalls": "API Çağrısı"
+    }
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "agents": "Agent'lar",
+    "files": "Dosyalar",
+    "enterprise": "Kurumsal"
+  },
+  "status": {
+    "checking": "Kontrol ediliyor...",
+    "healthy": "Sistem Aktif",
+    "error": "Bağlantı Hatası"
+  },
+  "buttons": {
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "create": "Oluştur",
+    "upload": "Yükle",
+    "download": "İndir",
+    "refresh": "Yenile"
+  },
+  "messages": {
+    "success": "İşlem başarılı",
+    "error": "Bir hata oluştu",
+    "loading": "Yükleniyor...",
+    "noData": "Veri bulunamadı",
+    "confirmDelete": "Silmek istediğinizden emin misiniz?"
+  },
+  "agents": {
+    "title": "Agent Yönetimi",
+    "create": "Yeni Agent Oluştur",
+    "edit": "Agent'ı Düzenle",
+    "delete": "Agent'ı Sil",
+    "name": "Agent Adı",
+    "description": "Açıklama",
+    "type": "Tip",
+    "status": "Durum",
+    "capabilities": "Yetenekler",
+    "provider": "Sağlayıcı"
+  },
+  "files": {
+    "title": "Dosya Yönetimi",
+    "upload": "Dosya Yükle",
+    "process": "İşle",
+    "analyze": "Analiz Et",
+    "name": "Dosya Adı",
+    "size": "Boyut",
+    "type": "Tip",
+    "status": "Durum",
+    "uploadedAt": "Yükleme Tarihi"
+  }
+}
